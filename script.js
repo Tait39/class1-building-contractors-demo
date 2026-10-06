@@ -53,3 +53,41 @@ document.addEventListener("DOMContentLoaded",function(){
     });
   }
 });
+(function(){
+  const details={
+    breakfast:{
+      title:"Breakfast",
+      text:"Florence serves breakfast as part of its international cuisine offering. Published listings describe daily English breakfast service; confirm current menu, hours and pricing directly with The Palace Guest.",
+      action:"Ask about breakfast →"
+    },
+    lunch:{
+      title:"Lunch",
+      text:"Florence is the on-site restaurant at The Palace Guest and serves international cuisine for lunch. Ask the property about today's menu, availability and dietary requirements.",
+      action:"Ask about lunch →"
+    },
+    dinner:{
+      title:"Dinner",
+      text:"Enjoy dinner at Florence, the property's on-site international cuisine restaurant. Dinner service is listed alongside breakfast and lunch; confirm the current menu and service times directly with the property.",
+      action:"Ask about dinner →"
+    },
+    bar:{
+      title:"Bar & lounge",
+      text:"The Palace Guest has a bar/lounge alongside Florence, giving guests a relaxed place to unwind on the property. Ask about current opening hours and available drinks when making your enquiry.",
+      action:"Ask about the bar →"
+    }
+  };
+  document.addEventListener("DOMContentLoaded",function(){
+    const panel=document.getElementById("diningPanel");
+    if(!panel)return;
+    const title=document.getElementById("diningTitle"), text=document.getElementById("diningText"), action=document.getElementById("diningAction");
+    document.querySelectorAll(".dining-item").forEach(function(btn){
+      btn.addEventListener("click",function(){
+        const d=details[btn.dataset.dining]; if(!d)return;
+        document.querySelectorAll(".dining-item").forEach(function(x){x.classList.remove("active")});
+        btn.classList.add("active");
+        title.textContent=d.title; text.textContent=d.text; action.textContent=d.action;
+        panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+      });
+    });
+  });
+})();
